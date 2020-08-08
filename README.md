@@ -18,6 +18,6 @@ You can do multiple activity:
 * Multiplication
 * Division
  
-## Created By
-Prankit Agarwal
+### Created By
+Prankit Agarwal <br/>
 GLA University
