@@ -1,7 +1,22 @@
-# Brain.Trainer
+# Brain Trainer
 
+## Introduction
 It is a simple android based application.
-You can do addition, subtraction, multiplication and division to improve your basic mathematic calculation skills.
+You can do basic specified mathematic calculation with in a limited time.
 
-Created BY:
+### Concept Implemented
+Concepts used to developed this application
+* Java programming language
+* Timer in android
+* GridView and ListView in android
+* Adding multiple activity
+
+#### Activities
+You can do multiple activity:
+* Addition
+* Subtraction
+* Multiplication
+* Division
+ 
+##### Created BY
 Prankit Agarwal
