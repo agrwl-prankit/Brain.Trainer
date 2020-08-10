@@ -25,6 +25,7 @@ public class MultiplicationActivity extends AppCompatActivity {
     boolean counterIsActive = false;
 
     public void back(View view){
+        finish();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
     }
