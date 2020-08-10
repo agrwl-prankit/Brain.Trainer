@@ -1,8 +1,10 @@
 package com.prankit.braintrainer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.gridlayout.widget.GridLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -25,9 +27,18 @@ public class MultiplicationActivity extends AppCompatActivity {
     boolean counterIsActive = false;
 
     public void back(View view){
-        finish();
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+        new AlertDialog.Builder(this)
+                .setMessage("Do you want to return to main menu")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No",null)
+                .show();
     }
 
     public void playAgain(View view) {
