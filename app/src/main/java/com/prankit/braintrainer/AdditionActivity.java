@@ -6,6 +6,7 @@ import androidx.gridlayout.widget.GridLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -20,13 +21,14 @@ public class AdditionActivity extends AppCompatActivity {
     TextView resultTextView, sumtextView, timerTextView, pointsTextView;
     GridLayout gridLayout;
     ArrayList<Integer> answer = new ArrayList<Integer>();
-    int locationOfCorrectAnswer;
-    int score = 0;
-    int numberOfQuestion = 0;
+    int locationOfCorrectAnswer, score = 0, numberOfQuestion = 0;
     boolean counterIsActive = false;
+    MediaPlayer timerSound;
 
     public void back(View view){
         new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Return to main menu")
                 .setMessage("Do you want to return to main menu")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -54,14 +56,19 @@ public class AdditionActivity extends AppCompatActivity {
             new CountDownTimer(30100, 1000) {
                 @Override
                 public void onTick(long l) {
+                    timerSound.start();
                     timerTextView.setText(String.valueOf(l / 1000) + "s");
                 }
                 @Override
                 public void onFinish() {
+                    timerSound.pause();
+                    timerSound.seekTo(0);
+                    MediaPlayer winSound = MediaPlayer.create(getApplicationContext(), R.raw.winsound);
+                    winSound.start();
                     playAgainButton.setVisibility(View.VISIBLE);
                     backButton.setVisibility(View.VISIBLE);
                     timerTextView.setText("0s");
-                    resultTextView.setText("Your score : " + Integer.toString(score) + "/" + Integer.toString(numberOfQuestion));
+                    resultTextView.setText("Your score : " + score + "/" + numberOfQuestion);
                     counterIsActive = false;
                 }
             }.start();
@@ -69,7 +76,7 @@ public class AdditionActivity extends AppCompatActivity {
     }
 
     public void generateQuestion() {
-        if (counterIsActive == true) {
+        if (counterIsActive) {
             Random rand = new Random();         // generate 2 random number always for addition
             int a = rand.nextInt(21);
             int b = rand.nextInt(21);
@@ -121,6 +128,12 @@ public class AdditionActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition);
@@ -139,6 +152,7 @@ public class AdditionActivity extends AppCompatActivity {
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
         backButton = (Button) findViewById(R.id.backButton);
+        timerSound = MediaPlayer.create(getApplicationContext(), R.raw.timersound);
         // playAgain(findViewById(R.id.startButton));
     }
 }
