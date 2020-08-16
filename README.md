@@ -8,6 +8,7 @@ You can do basic specified mathematic calculation with in a limited time.
 Concepts used to developed this application
 * Java programming language
 * Timer in android
+* Sound effects
 * GridView and ListView in android
 * Adding multiple activity
 
