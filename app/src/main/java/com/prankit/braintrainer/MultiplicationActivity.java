@@ -26,12 +26,6 @@ public class MultiplicationActivity extends AppCompatActivity {
     boolean counterIsActive = false;
     MediaPlayer timerSound;
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
-
     public void back(View view){
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
